@@ -14,6 +14,20 @@ const Nav = () => {
 
   const isUserLoggedIn = true
 
+  const [providers, setProviders] = useState(null)
+
+  // useEffect(()=>{
+  //   const setProviders = async ()=>{
+
+  //     const response = await getProviders()
+
+  //     setProviders(response)
+  //   }
+
+  //   setProviders()
+
+  // },[])
+
   return (
     <nav className='flex-between w-full mb-16 pt-3 '>
       <Link href='/' className='flex gap-2  flex-center'>
@@ -48,15 +62,63 @@ const Nav = () => {
 
             <Link href='/profile'>
               <Image
-              src='/assets/images/whiteBg.jpg'
-              alt='Profile'
-              width={37}
-              height={37}
-              className='rounded-full'
+                src='/assets/images/whiteBg.jpg'
+                alt='Profile'
+                width={37}
+                height={37}
+                className='rounded-full'
               />
             </Link>
           </div>
-        ) : (<></>)
+        ) : (<>
+          {
+            providers && Objext.values(providers).map((provider) => (
+
+              <button
+                type='button'
+                key={provider.name}
+                onClick={() => signIn(provider.id)}
+                className='black_btn'
+              >
+                SignIn
+              </button>
+            ))
+          }
+        </>)
+        }
+      </div>
+
+      {/* Mobile Navigation  */}
+
+      <div className='sm:hidden flex relative'>
+        {
+          isUserLoggedIn ? (
+          
+          <div className='flex'>
+                 <Image
+                src='/assets/images/whiteBg.jpg'
+                alt='Profile'
+                width={37}
+                height={37}
+                className='rounded-full'
+              />
+          </div>) : (
+            <>
+            {
+              providers && Objext.values(providers).map((provider) => (
+  
+                <button
+                  type='button'
+                  key={provider.name}
+                  onClick={() => signIn(provider.id)}
+                  className='black_btn'
+                >
+                  SignIn
+                </button>
+              ))
+            }
+          </>
+          )
         }
       </div>
     </nav>

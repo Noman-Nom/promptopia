@@ -1,4 +1,6 @@
 import '@styles/globals.css'
+import Nav from '@components/Nav'
+import Profile from '@components/Profile'
 
 export const metadata = {
 
@@ -13,6 +15,7 @@ const RootLayout = ({children}) => {
                     <div className='gradiant' />
                 </div>
                 <main className='app'>
+                    <Nav />
                     {children}
                 </main>
             </body>

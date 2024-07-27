@@ -15,6 +15,7 @@ const Nav = () => {
   const isUserLoggedIn = true
 
   const [providers, setProviders] = useState(null)
+  const [toggleDropdown, setToggleDropdown] = useState(false)
 
   // useEffect(()=>{
   //   const setProviders = async ()=>{
@@ -72,7 +73,7 @@ const Nav = () => {
           </div>
         ) : (<>
           {
-            providers && Objext.values(providers).map((provider) => (
+            providers && Object.values(providers).map((provider) => (
 
               <button
                 type='button'
@@ -101,7 +102,37 @@ const Nav = () => {
                 width={37}
                 height={37}
                 className='rounded-full'
+                onClick={()=>setToggleDropdown((prev)=>(!prev))}
               />
+
+              {toggleDropdown && (
+                <div className='dropdown'>
+
+                  <Link href='/profile'
+                  className='dropdown_link'
+                  onClick={()=>setToggleDropdown(false)}
+                  >
+
+                    My Profile
+                  </Link>
+                  <Link href='/create-prompt'
+                  className='dropdown_link'
+                  onClick={()=>setToggleDropdown(false)}
+                  >
+
+                  Crate Prompt
+                  </Link>
+                  <button 
+                  type='button'
+                  onClick={()=>{signOut(); setToggleDropdown(false)}}
+                  className='mt-5 w-full black_btn'
+                  >
+                    Sign Out
+
+                  </button>
+
+                </div>
+              )}
           </div>) : (
             <>
             {

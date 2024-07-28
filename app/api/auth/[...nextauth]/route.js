@@ -4,10 +4,10 @@ import env from 'dotenv'
 
 
 
-console.log({
-    clientId:process.env.GOOGLE_ID,
-            clientSecret:process.env.GOOGLE_CLIENT_SECRET,
-})
+// console.log({
+//     clientId:process.env.GOOGLE_ID,
+//             clientSecret:process.env.GOOGLE_CLIENT_SECRET,
+// })
 const handler = NextAuth({
 
     providers:[

@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import env from 'dotenv'
-
+import {connectToDB} from '@/utils/database'
 
 
 // console.log({
@@ -22,9 +22,16 @@ const handler = NextAuth({
     },
     async signIn({profile}){
         try {
-            
+            await connectToDB();
+
+            //  check if the user already exists in the database
+
+            // if not ,  create a new user in the database
+
+            return true;
         } catch (error) {
-            
+            console.log(error)
+            return false;
         }
 
     }

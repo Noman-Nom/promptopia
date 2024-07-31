@@ -1,9 +1,30 @@
-import React from 'react'
+'use client'
 
-const page = () => {
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+
+
+import Form from '@components/Form'
+
+const CreatePrompt = () => {
+
+    const [submitting, setSubmitting] = useState(false)
+
+    const [post, setPost] = useState({
+        prompt:'',
+        tag:'',
+    })
   return (
-    <div>page</div>
+   <Form
+   type='Create'
+   post={post}
+   setPost={setPost}
+   submitting={submitting}
+   setSubmitting={setSubmitting}
+
+   />
   )
 }
 
-export default page
+export default CreatePrompt 
